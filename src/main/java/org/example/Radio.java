@@ -1,8 +1,8 @@
 package org.example;
 
 public class Radio {
-    public int chanel;
-    public int volume;
+    private int chanel;
+    private int volume;
 
     public int getChanel() {
         return chanel;
@@ -40,12 +40,19 @@ public class Radio {
         return volume;
     }
 
+    public void setVolume(int newVolume) {
+        if (newVolume < 0) {
+            return;
+        }
+        if (newVolume > 100) {
+            return;
+        }
+        volume = newVolume;
+    }
+
     public void increaseVolume() {
         if (volume < 100) {
             volume++;
-        }
-        if (volume == 100) {
-            return;
         }
     }
 
@@ -53,8 +60,6 @@ public class Radio {
         if (volume > 0) {
             volume--;
         }
-        if (volume == 0) {
-            return;
-        }
+
     }
 }

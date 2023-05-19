@@ -118,22 +118,74 @@ public class RadioTest {
     }
 
     @Test
+    public void belowMinBorderVolume() {
+        Radio radio = new Radio();
+
+        radio.setVolume(-1);
+
+        int expected = 0;
+        int actual = radio.getVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void minBorderVolume() {
+        Radio radio = new Radio();
+
+        radio.setVolume(0);
+
+        int expected = 0;
+        int actual = radio.getVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+
+    @Test
+    public void middleVolume() {
+        Radio radio = new Radio();
+
+        radio.setVolume(50);
+
+        int expected = 50;
+        int actual = radio.getVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void maxBorderVolume() {
+        Radio radio = new Radio();
+
+        radio.setVolume(100);
+
+        int expected = 100;
+        int actual = radio.getVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void aboveMaxBorderVolume() {
+        Radio radio = new Radio();
+
+        radio.setVolume(101);
+
+        int expected = 0;
+        int actual = radio.getVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void increaseVolumeMaxMinusOne() {
         Radio radio = new Radio();
 
-        // т.к. напрямую нельзя устанавливать звук, то необходимо исключить то, что звук стоит на максимуме через функцию уменьшения звука
-        for (int i = 0; i < 10; i++) {
-            radio.decreaseVolume();
-        }
+        radio.setVolume(99);
+        radio.increaseVolume();
 
-        // определение счетчика до максимума
-        int count = 100 - radio.volume;
-
-        for (int i = 0; i < (count - 1); i++) {
-            radio.increaseVolume();
-        }
-
-        int expected = 99;
+        int expected = 100;
         int actual = radio.getVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -143,39 +195,8 @@ public class RadioTest {
     public void increaseVolumeMax() {
         Radio radio = new Radio();
 
-        // т.к. напрямую нельзя устанавливать звук, то необходимо исключить то, что звук стоит на максимуме через функцию уменьшения звука
-        for (int i = 0; i < 10; i++) {
-            radio.decreaseVolume();
-        }
-
-        // определение счетчика до максимума
-        int count = 100 - radio.volume;
-
-        for (int i = 0; i < count; i++) {
-            radio.increaseVolume();
-        }
-
-        int expected = 100;
-        int actual = radio.getVolume();
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void increaseVolumeMaxPlusOne() {
-        Radio radio = new Radio();
-
-        // т.к. напрямую нельзя устанавливать звук, то необходимо исключить то, что звук стоит на максимуме через функцию уменьшения звука
-        for (int i = 0; i < 10; i++) {
-            radio.decreaseVolume();
-        }
-
-        // определение счетчика до максимума
-        int count = 100 - radio.volume;
-
-        for (int i = 0; i < (count + 1); i++) {
-            radio.increaseVolume();
-        }
+        radio.setVolume(100);
+        radio.increaseVolume();
 
         int expected = 100;
         int actual = radio.getVolume();
@@ -187,18 +208,10 @@ public class RadioTest {
     public void decreaseVolumeMinPlusOne() {
         Radio radio = new Radio();
 
-        // т.к. напрямую нельзя устанавливать звук, то необходимо исключить то, что звук стоит на минимуме через функцию увеличения звука
-        for (int i = 0; i < 10; i++) {
-            radio.increaseVolume();
-        }
+        radio.setVolume(1);
+        radio.decreaseVolume();
 
-        int count = radio.volume;
-
-        for (int i = 0; i < (count - 1); i++) {
-            radio.decreaseVolume();
-        }
-
-        int expected = 1;
+        int expected = 0;
         int actual = radio.getVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -208,37 +221,8 @@ public class RadioTest {
     public void decreaseVolumeMin() {
         Radio radio = new Radio();
 
-        // т.к. напрямую нельзя устанавливать звук, то необходимо исключить то, что звук стоит на минимуме через функцию увеличения звука
-        for (int i = 0; i < 10; i++) {
-            radio.increaseVolume();
-        }
-
-        int count = radio.volume;
-
-        for (int i = 0; i < count; i++) {
-            radio.decreaseVolume();
-        }
-
-        int expected = 0;
-        int actual = radio.getVolume();
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void decreaseVolumeMinMinesOne() {
-        Radio radio = new Radio();
-
-        // т.к. напрямую нельзя устанавливать звук, то необходимо исключить то, что звук стоит на минимуме через функцию увеличения звука
-        for (int i = 0; i < 10; i++) {
-            radio.increaseVolume();
-        }
-
-        int count = radio.volume;
-
-        for (int i = 0; i < (count + 1); i++) {
-            radio.decreaseVolume();
-        }
+        radio.setVolume(0);
+        radio.decreaseVolume();
 
         int expected = 0;
         int actual = radio.getVolume();
