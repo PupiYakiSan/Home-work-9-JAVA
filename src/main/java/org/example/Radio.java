@@ -19,21 +19,20 @@ public class Radio {
     }
 
     public void nextChanel() {
-        if (chanel < 9) {
-            chanel = chanel + 1;
-        }
         if (chanel == 9) {
             chanel = 0;
+        } else {
+            chanel = chanel + 1;
         }
     }
 
     public void prevChanel() {
-        if (chanel > 0) {
-            chanel = chanel - 1;
-        }
         if (chanel == 0) {
             chanel = 9;
+        } else {
+            chanel = chanel - 1;
         }
+
     }
 
     public int getVolume() {

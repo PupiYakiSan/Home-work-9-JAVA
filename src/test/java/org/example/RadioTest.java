@@ -66,13 +66,39 @@ public class RadioTest {
     }
 
     @Test
-    public void nextChanel() {
+    public void nextChanelMin() {
+        Radio radio = new Radio();
+
+        radio.setChanel(0);
+        radio.nextChanel();
+
+        int expected = 1;
+        int actual = radio.getChanel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void nextChanelMiddle() {
         Radio radio = new Radio();
 
         radio.setChanel(5);
         radio.nextChanel();
 
         int expected = 6;
+        int actual = radio.getChanel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void nextChanelMax() {
+        Radio radio = new Radio();
+
+        radio.setChanel(8);
+        radio.nextChanel();
+
+        int expected = 9;
         int actual = radio.getChanel();
 
         Assertions.assertEquals(expected, actual);
@@ -92,13 +118,39 @@ public class RadioTest {
     }
 
     @Test
-    public void prevChanel() {
+    public void prevChanelMin() {
+        Radio radio = new Radio();
+
+        radio.setChanel(1);
+        radio.prevChanel();
+
+        int expected = 0;
+        int actual = radio.getChanel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void prevChanelMiddle() {
         Radio radio = new Radio();
 
         radio.setChanel(5);
         radio.prevChanel();
 
         int expected = 4;
+        int actual = radio.getChanel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void prevChanelMax() {
+        Radio radio = new Radio();
+
+        radio.setChanel(9);
+        radio.prevChanel();
+
+        int expected = 8;
         int actual = radio.getChanel();
 
         Assertions.assertEquals(expected, actual);
